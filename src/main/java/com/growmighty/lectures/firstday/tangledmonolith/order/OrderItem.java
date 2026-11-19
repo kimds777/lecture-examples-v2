@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "order_items")
 @Getter
@@ -19,16 +21,22 @@ public class OrderItem {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private Product product;
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "product_id")
+    private Long productId;
+
+    private String productName;
+
+    private BigDecimal productPrice;
 
     @Column(nullable = false)
     private Integer quantity;
 
-    public static OrderItem create(Product product, int quantity) {
+    public static OrderItem create(Long productId, String productName, BigDecimal productPrice, int quantity) {
         OrderItem orderItem = new OrderItem();
-        orderItem.product = product;
+        orderItem.productId = productId;
+        orderItem.productName = productName;
+        orderItem.productPrice = productPrice;
         orderItem.quantity = quantity;
 
         return orderItem;

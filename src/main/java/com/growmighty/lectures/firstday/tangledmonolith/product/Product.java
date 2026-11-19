@@ -18,9 +18,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "seller_id")
-    private Seller seller;
+    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    //@JoinColumn(name = "seller_id")
+    // 판매자(1)와 상품(N)은 1:N 관계, 상품은 판매자에 비해 생성·수정·삭제가 훨씬 빈번하게 일어남.
+    private Long sellerId;
 
     @Column(nullable = false)
     private String name;
@@ -35,9 +36,9 @@ public class Product {
     @Lob
     private String description;
 
-    public static Product create(Seller seller, String name, BigDecimal price, Integer stockQuantity, String description) {
+    public static Product create(Long sellerId, String name, BigDecimal price, Integer stockQuantity, String description) {
         Product product = new Product();
-        product.seller = seller;
+        product.sellerId = sellerId;
         product.name = name;
         product.price = price;
         product.stockQuantity = stockQuantity;
