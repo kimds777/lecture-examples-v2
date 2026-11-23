@@ -21,15 +21,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@JoinColumn(name = "user_id")
+    @Column(nullable = false)
     private Long userId;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private List<OrderItem> items = new ArrayList<>();
 
-    //@OneToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "payment_id")
+    @Column(nullable = false)
     private Long paymentId;
     
     @Setter

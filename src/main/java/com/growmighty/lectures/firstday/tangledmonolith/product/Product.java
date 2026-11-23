@@ -18,9 +18,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@JoinColumn(name = "seller_id")
     // 판매자(1)와 상품(N)은 1:N 관계, 상품은 판매자에 비해 생성·수정·삭제가 훨씬 빈번하게 일어남.
+    @Column(nullable = false)
     private Long sellerId;
 
     @Column(nullable = false)

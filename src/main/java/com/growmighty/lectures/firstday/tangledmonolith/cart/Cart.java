@@ -21,8 +21,7 @@ public class Cart {
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> items = new ArrayList<>();
 
-    //@OneToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "user_id")
+    @Column(nullable = false)
     private Long userId;
 
     public static Cart create(Long userId) {
